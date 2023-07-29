@@ -1,0 +1,83 @@
+{
+    "name": "default",
+    "n_gpu": 1,
+
+    "graph_truncation_dist": 5.0,
+
+    "arch": {
+        "type": "STTransformerModel",
+        "args": {
+            "d_model": 128,
+            "nhead": 8,
+            "dropout": 0.1,
+            "encoder_nlayers": 1,
+            "decoder_nlayers": 3,
+            "norm_first": true,
+            "cross_attn_value_gate": false
+        }
+    },  
+    "train_dataset": {
+        "type": "PatchwiseDataset",
+        "args": {
+            "data_dir": "$PKL_DATA_DIR",
+            "split": "training",
+            "sample_length": 6,
+            "dataset": "nuscenes",
+            "iou_matching": true,
+            "score_threshold": 0.0
+        }
+    },
+    "train_data_loader": {
+        "type": "BaseDataLoader",
+        "args": {
+            "batch_size": 8,
+            "shuffle": true,
+            "num_workers": 0,
+            "pin_memory": false
+        }
+    },
+    "val_dataset": {
+        "type": "SequentialDataset",
+        "args": {
+            "data_dir": "$PKL_DATA_DIR",
+            "split": "validation",
+            "dataset": "nuscenes",
+            "iou_matching": true,
+            "score_threshold": 0.0
+        }
+    },
+    "optimizer": {
+        "type": "AdamW",
+        "args": {
+            "lr": 0.001
+        }
+    },
+    "loss": {
+        "type": "Loss",
+        "args": {
+            "gamma": 1.0,
+            "normalize_by_positive": false,
+            "velo_loss_weight": 1.0
+        }
+    },
+    "trainer": {
+        "epochs": 12,
+
+        "save_dir": "./workspace/",
+        "nusc_path": "$NUSCENES_DIR",
+        "save_period": 1,
+        "verbosity": 2,
+        "log_step": 50,
+        "eval_interval": 1,
+
+        "active_track_thresh": 0.01,
+        "inter_graph_distance_thresh": 5.0,
+        "max_age": 3,
+        "learned_feature_update": false,
+        "feature_update_weight": 1.0,
+        "hungarian_matching": false,
+
+        "tensorboard": true,
+        "num_vis": 3
+    }
+}
