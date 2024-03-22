@@ -4,6 +4,8 @@ This is the official implementation of the ICCV2023 paper
 > **3DMOTFormer: Graph Transformer for Online 3D Multi-Object Tracking**  
 > Shuxiao Ding, Eike Rehder, Lukas Schneider, Marius Cordts, Juergen Gall
 
+[Arxiv](https://arxiv.org/abs/2308.06635) | [CVF Open Access](https://openaccess.thecvf.com/content/ICCV2023/papers/Ding_3DMOTFormer_Graph_Transformer_for_Online_3D_Multi-Object_Tracking_ICCV_2023_paper.pdf)
+
 A demo of scene c525507ee2ef4c6d8bb64b0e0cf0dd32:
 <img src="./img/demo.gif">
 
@@ -92,14 +94,25 @@ python train.py -c config/default.json
 This will also run the evaluation on the valiation split after every epoch.
 
 ## Experimental results
-Results using different detectors as input:
+Results on nuScenes validation set using different detectors as input:
 
 | Detector | NDS | mAP | AMOTA | AMOTP | MOTA | IDS | FRAG |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| CenterPoint | 68.5 | 61.5 | 0.712 | 0.496 | 0.556 | 438 | 529 |
-| BEVFusion | 72.9 | 70.2 | 0.725 | 0.539 | 0.609 | 593 | 499 |
+| CenterPoint | 68.5 | 61.5 | 0.712 | 0.515 | 0.607 | 341 | 436 |
+| BEVFusion | 72.9 | 70.2 | 0.749 | 0.550 | 0.652 | 447 | 443 |
 | MEGVII | 62.8	| 51.9 | 0.641 | 0.639 | 0.535 | 328 | 497 |
-
 
 ## License
 See [LICENSE](./LICENSE) for more details.
+
+## Citation
+If you find 3DMOTFormer is helpful for your research, please give us a star and cite it by:
+```
+@inproceedings{ding20233dmotformer,
+  title={3dmotformer: Graph transformer for online 3d multi-object tracking},
+  author={Ding, Shuxiao and Rehder, Eike and Schneider, Lukas and Cordts, Marius and Gall, Juergen},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={9784--9794},
+  year={2023}
+}
+```
